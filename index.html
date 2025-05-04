@@ -6,6 +6,43 @@
     <title>Harmony Zone Audio Studio</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        let lastScroll = 0;
+        const header = document.querySelector('header');
+        const scrollThreshold = 100;
+        let isHovering = false;
+
+        // Handle scroll behavior
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll <= 0) {
+                header.classList.remove('hide');
+                return;
+            }
+
+            if (!isHovering && currentScroll > lastScroll && currentScroll > scrollThreshold) {
+                header.classList.add('hide');
+            } else if (!isHovering) {
+                header.classList.remove('hide');
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        // Handle hover behavior
+        header.addEventListener('mouseenter', () => {
+            isHovering = true;
+            header.classList.remove('hide');
+        });
+
+        header.addEventListener('mouseleave', () => {
+            isHovering = false;
+            if (window.pageYOffset > scrollThreshold) {
+                header.classList.add('hide');
+            }
+        });
+    </script>
 </head>
 <body>
     <header>
@@ -29,7 +66,7 @@
                     <a href="portfolio.html" class="cta-gradient">View samples <i class="fas fa-music"></i></a>
                 </div>
                 <div class="hero-right">
-                    <div class="avatar-placeholder"></div>
+                    <img src="reference/Hz-Logo.png" alt="Harmony Zone Logo" class="hero-logo">
                 </div>
             </div>
         </section>
@@ -55,7 +92,17 @@
         </section>
         <section class="contact">
             <h2>Contact Us</h2>
-            <p>Email: <a href="mailto:harmonyzonemix@gmail.com">harmonyzonemix@gmail.com</a></p>
+            <div class="contact-content">
+                <div class="contact-email">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:harmonyzonemix@gmail.com">harmonyzonemix@gmail.com</a>
+                </div>
+                <div class="contact-social">
+                    <a href="https://x.com/HarmoZone_mix" class="social-link" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/harmonyzonemix/" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://discord.gg/acfSpJsA" class="social-link" target="_blank"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
         </section>
     </main>
 
